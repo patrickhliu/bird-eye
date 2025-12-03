@@ -16,10 +16,10 @@ module.exports = {
         type: Sequelize.STRING
       },
       question: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       answer: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       round: {
         type: Sequelize.STRING
