@@ -30,7 +30,7 @@ module.exports = {
       air_date: {
         type: Sequelize.DATE
       }
-    }, { timestamps: false });
+    }, { timestampe: false});
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('jeopardy_questions');

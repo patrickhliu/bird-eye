@@ -158,16 +158,8 @@ module.exports = {
       },
       file_size: {
         type: Sequelize.STRING
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
       }
-    });
+    }, { timestampe: false});
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('nintendo_games');
