@@ -29,7 +29,16 @@ module.exports = {
       },
       air_date: {
         type: Sequelize.DATE
-      }
+      },
+      air_year: {
+        type: Sequelize.INTEGER
+      },
+      air_month: {
+        type: Sequelize.INTEGER
+      },
+      air_date: {
+        type: Sequelize.INTEGER
+      },
     }, { timestampe: false});
   },
   async down(queryInterface, Sequelize) {
