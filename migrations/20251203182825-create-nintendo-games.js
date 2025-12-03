@@ -1,165 +1,167 @@
 'use strict';
+import { DataTypes } from 'sequelize';
+
 /** @type {import('sequelize-cli').Migration} */
-module.exports = {
+export default {    // forget commonJs, use newer module syntax...
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('nintendo_games', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: DataTypes.INTEGER
       },
       title: {
-        type: Sequelize.STRING
+        type: DataTypes.STRING
       },
       title_key: {
-        type: Sequelize.STRING
+        type: DataTypes.STRING
       },
       nsuid: {
-        type: Sequelize.STRING
+        type: DataTypes.STRING
       },
       content_rating: {
-        type: Sequelize.STRING
+        type: DataTypes.STRING
       },
       content_rating_system: {
-        type: Sequelize.STRING
+        type: DataTypes.STRING
       },
       regular_price: {
-        type: Sequelize.DECIMAL
+        type: DataTypes.DECIMAL(10,2)
       },
       final_price: {
-        type: Sequelize.DECIMAL
+        type: DataTypes.DECIMAL(10,2)
       },
       sale_price: {
-        type: Sequelize.DECIMAL
+        type: DataTypes.DECIMAL(10,2)
       },
       amount_off: {
-        type: Sequelize.DECIMAL
+        type: DataTypes.DECIMAL(10,2)
       },
       percent_off: {
-        type: Sequelize.DECIMAL
+        type: DataTypes.DECIMAL(10,2)
       },
       price_range: {
-        type: Sequelize.STRING
+        type: DataTypes.STRING
       },
       discount_price_end: {
-        type: Sequelize.DATE
+        type: DataTypes.DATE
       },
       discount_price_end_timestamp: {
-        type: Sequelize.INTEGER
+        type: DataTypes.INTEGER
       },
       platform_code: {
-        type: Sequelize.STRING
+        type: DataTypes.STRING
       },
       product_image: {
-        type: Sequelize.STRING
+        type: DataTypes.STRING
       },
       product_image_square: {
-        type: Sequelize.STRING
+        type: DataTypes.STRING
       },
       product_gallery: {
-        type: Sequelize.JSON
+        type: DataTypes.JSON
       },
       release_date: {
-        type: Sequelize.DATE
+        type: DataTypes.DATE
       },
       sku: {
-        type: Sequelize.STRING
+        type: DataTypes.STRING
       },
       top_level_filters: {
-        type: Sequelize.JSON
+        type: DataTypes.JSON
       },
       url: {
-        type: Sequelize.STRING
+        type: DataTypes.STRING
       },
       url_key: {
-        type: Sequelize.STRING
+        type: DataTypes.STRING
       },
       demo_nsuid: {
-        type: Sequelize.STRING
+        type: DataTypes.STRING
       },
       dlc_type: {
-        type: Sequelize.STRING
+        type: DataTypes.STRING
       },
       has_dlc: {
-        type: Sequelize.BOOLEAN
+        type: DataTypes.BOOLEAN
       },
       is_upgrade: {
-        type: Sequelize.BOOLEAN
+        type: DataTypes.BOOLEAN
       },
       is_exclusive: {
-        type: Sequelize.BOOLEAN
+        type: DataTypes.BOOLEAN
       },
       is_featured: {
-        type: Sequelize.BOOLEAN
+        type: DataTypes.BOOLEAN
       },
       is_shovelware: {
-        type: Sequelize.BOOLEAN
+        type: DataTypes.BOOLEAN
       },
       editions: {
-        type: Sequelize.JSON
+        type: DataTypes.JSON
       },
       availability: {
-        type: Sequelize.JSON
+        type: DataTypes.JSON
       },
       software_developer: {
-        type: Sequelize.STRING
+        type: DataTypes.STRING
       },
       software_publisher: {
-        type: Sequelize.STRING
+        type: DataTypes.STRING
       },
       franchises: {
-        type: Sequelize.JSON
+        type: DataTypes.JSON
       },
       created_date: {
-        type: Sequelize.DATE
+        type: DataTypes.DATE
       },
       updated_date: {
-        type: Sequelize.DATE
+        type: DataTypes.DATE
       },
       nintendo_updated_date: {
-        type: Sequelize.DATE
+        type: DataTypes.DATE
       },
       content_descriptors: {
-        type: Sequelize.JSON
+        type: DataTypes.JSON
       },
       player_count: {
-        type: Sequelize.STRING
+        type: DataTypes.STRING
       },
       play_modes: {
-        type: Sequelize.JSON
+        type: DataTypes.JSON
       },
       tag_labels: {
-        type: Sequelize.JSON
+        type: DataTypes.JSON
       },
       top_level_category: {
-        type: Sequelize.STRING
+        type: DataTypes.STRING
       },
       top_level_category_code: {
-        type: Sequelize.STRING
+        type: DataTypes.STRING
       },
       visible_in_search: {
-        type: Sequelize.BOOLEAN
+        type: DataTypes.BOOLEAN
       },
       genres: {
-        type: Sequelize.JSON
+        type: DataTypes.JSON
       },
       game_genre_labels: {
-        type: Sequelize.JSON
+        type: DataTypes.JSON
       },
       game_feature_labels: {
-        type: Sequelize.JSON
+        type: DataTypes.JSON
       },
       nso_features: {
-        type: Sequelize.JSON
+        type: DataTypes.JSON
       },
       ways_to_play_labels: {
-        type: Sequelize.JSON
+        type: DataTypes.JSON
       },
       file_size: {
-        type: Sequelize.STRING
+        type: DataTypes.STRING
       }
-    }, { timestampe: false});
+    });
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('nintendo_games');
