@@ -3,9 +3,11 @@ import React, { useCallback, useState, useEffect, useRef } from 'react';
 import logger from '../../config/winston';
 import axios from 'axios';
 import Dropdown from '../../components/custom/dropdown';
+import Dropdown2 from '../../components/custom/dropdown2';
 
 export default function page() {
     ///logger.info("123 kid...");
+    const childRef = useRef(null);
     const [loading, setLoading] = useState(false);
     const [years, setYears] = useState([]);
 
@@ -37,11 +39,15 @@ export default function page() {
         }
     }
 
+    function clickHandler(x:string) {
+        console.log(x);
+    }
+
     return (
         <>
         <div className="grid grid-cols-15 gap-1">
             { years.map((y, i) => (
-                <Dropdown></Dropdown>
+                <Dropdown2 key={ i } label={ y } sendToParent={(x:string) => clickHandler(x) }></Dropdown2>
             ))}
         </div>
         </>
