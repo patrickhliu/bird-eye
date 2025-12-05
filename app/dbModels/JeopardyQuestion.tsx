@@ -9,7 +9,7 @@ JeopardyQuestion.init({
             autoIncrement: true,
             primaryKey: true,
             type: DataTypes.INTEGER
-            },
+        },
         category: {
             type: DataTypes.STRING
         },
@@ -30,7 +30,16 @@ JeopardyQuestion.init({
         },
         air_date: {
             type: DataTypes.DATE
-        }
+        },
+        air_year: {
+            type: DataTypes.STRING
+        },
+        air_month: {
+            type: DataTypes.STRING
+        },
+        air_day: {
+            type: DataTypes.STRING
+        },
   }, {
   sequelize, // Pass the imported sequelize instance
   underscored: false,

@@ -10,10 +10,10 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       category: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(100)
       },
       value: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(10)
       },
       question: {
         type: Sequelize.TEXT
@@ -22,22 +22,22 @@ module.exports = {
         type: Sequelize.TEXT
       },
       round: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(25)
       },
       show_no: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(10)
       },
       air_date: {
         type: Sequelize.DATE
       },
       air_year: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING(10)
       },
       air_month: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING(10)
       },
-      air_date: {
-        type: Sequelize.INTEGER
+      air_day: {
+        type: Sequelize.STRING(10)
       },
     }, { timestampe: false});
   },
