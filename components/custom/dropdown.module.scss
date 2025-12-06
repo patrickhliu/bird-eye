@@ -1,0 +1,10 @@
+$primary-color: green;
+$font-stack: Arial, sans-serif;
+
+.pat {
+    color: red;
+
+  &:hover {
+    background-color: aqua;
+  }
+}

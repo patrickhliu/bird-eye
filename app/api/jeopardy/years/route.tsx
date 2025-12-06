@@ -1,4 +1,4 @@
-import JeopardyQuestion from "../../dbModels/JeopardyQuestion";
+import JeopardyQuestion from "../../../dbModels/JeopardyQuestion";
 import _ from 'lodash';
 
 const { Sequelize, Op, DataTypes, Model } = require('sequelize');
@@ -18,10 +18,10 @@ export async function GET(request: Request) {
 
     const years = _.map(dbResults, 'air_year');
 
-    /* console.log(years);
+    /* //console.log(years);
 
     for(let y of years) {
-        console.log(y);
+        //console.log(y);
 
         dbResults = await JeopardyQuestion.findAll({
             where: {
@@ -32,13 +32,12 @@ export async function GET(request: Request) {
             ],
         });
 
-        console.log(dbResults);
+        //console.log(dbResults);
     } */
 
     let output = {
         years: years
     };
-
 
     return new Response(JSON.stringify(output), {
         status: 200,

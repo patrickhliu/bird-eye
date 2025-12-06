@@ -8,10 +8,10 @@ const dbUser = process.env.DB_USER as string;
 const dbPassword = process.env.DB_PASSWORD;
 const dbHost = process.env.DB_HOST;
 
-console.log(dbName);
-console.log(dbUser);
-console.log(dbPassword);
-console.log(dbHost);
+//console.log(dbName);
+//console.log(dbUser);
+//console.log(dbPassword);
+//console.log(dbHost);
 
 const sequelize = new Sequelize(dbName, dbUser, dbPassword,
   {
@@ -31,7 +31,7 @@ const sequelize = new Sequelize(dbName, dbUser, dbPassword,
 // Authenticate and sync the database if necessary
 try {
   await sequelize.authenticate();
-  console.log('Connection has been established successfully.');
+  //console.log('Connection has been established successfully.');
 } catch (error) {
   console.error('Unable to connect to the database:', error);
 }
