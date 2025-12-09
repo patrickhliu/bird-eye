@@ -7,5 +7,5 @@ export interface singleQuestion {
 }
 
 export interface QuestionList {
-  questions: singleQuestion;
+  questions: Array<singleQuestion>;
 }
