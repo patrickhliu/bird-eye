@@ -1,5 +1,5 @@
 import { DataTypes, Model } from 'sequelize';
-import sequelize from '../../config/sequelize'; // Import the singleton instance
+import sequelize from '../../../../config/sequelize'; // Import the singleton instance
 
 class JeopardyQuestion extends Model {}
 

@@ -1,4 +1,4 @@
-import JeopardyQuestion from "../../../../dbModels/JeopardyQuestion";
+import JeopardyQuestion from "../../dbModels/JeopardyQuestion";
 import _ from 'lodash';
 import { getFormattedDate, } from '@/lib/utils'
 const { Sequelize, Op, DataTypes, Model } = require('sequelize');
@@ -28,23 +28,27 @@ export async function GET(request: Request, {
             air_year: routeArgs.year
         },
         attributes: [
-            [Sequelize.fn('DISTINCT', Sequelize.col('air_date')), 'air_date']
+            [Sequelize.fn('DISTINCT', Sequelize.col('air_date')), 'air_date'],
+            'show_no',
         ],
         order: [
             ['air_date', 'ASC']
         ],
     });
 
-    let dbResultsFormatted:string[] = [];
+    let dbResultsFormatted:Object[] = [];
 
     _.forEach(dbResults, function(obj, key) {
         let d = new Date(obj.air_date);
         let f = new Date(d.setUTCHours(12));
         //console.log(f.toUTCString());
 
-        dbResultsFormatted.push(
-            getFormattedDate(f)
-        );
+        let a = {
+            show_no: obj.show_no,
+            air_date: getFormattedDate(f)
+        };
+
+        dbResultsFormatted.push(a);
     });
 
     let output = {

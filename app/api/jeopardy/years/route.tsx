@@ -1,4 +1,4 @@
-import JeopardyQuestion from "../../../dbModels/JeopardyQuestion";
+import JeopardyQuestion from "../dbModels/JeopardyQuestion";
 import _ from 'lodash';
 
 const { Sequelize, Op, DataTypes, Model } = require('sequelize');
