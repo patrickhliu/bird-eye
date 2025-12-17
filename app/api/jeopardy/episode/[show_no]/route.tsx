@@ -15,7 +15,7 @@ export async function GET(request: Request, {
 
     let dbResults:any = await JeopardyQuestion.findAll({
         //limit:10,
-        attributes: ['category', 'value', 'question', 'answer'],
+        attributes: ['category', 'value', 'question', 'answer', 'round'],
         where: {
             show_no: routeArgs.show_no,
             round: 'Jeopardy!',
@@ -27,7 +27,7 @@ export async function GET(request: Request, {
 
     let dbResults2:any = await JeopardyQuestion.findAll({
         //limit:10,
-        attributes: ['category', 'value', 'question', 'answer'],
+        attributes: ['category', 'value', 'question', 'answer', 'round'],
         where: {
             show_no: routeArgs.show_no,
             round: 'Double Jeopardy!',
@@ -39,7 +39,7 @@ export async function GET(request: Request, {
 
     let dbResults3:any = await JeopardyQuestion.findAll({
         //limit:10,
-        attributes: ['category', 'value', 'question', 'answer', 'show_no', 'air_date'],
+        attributes: ['category', 'value', 'question', 'answer', 'round', 'show_no', 'air_date'],
         where: {
             show_no: routeArgs.show_no,
             round: 'Final Jeopardy!',

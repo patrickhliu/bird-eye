@@ -1,11 +1,13 @@
 export interface singleQuestion {
    category: string,
-   value: string,
+   value: number,
    question: string,
    answer: string,
+   round: string,
    map:any, // why is this needed?
 }
 
 export interface QuestionList {
   questions: Array<singleQuestion>;
+  currentRound: number;
 }

@@ -14,13 +14,21 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   jeopardy_questions.init({
-    category: DataTypes.STRING,
-    value: DataTypes.STRING,
-    question: DataTypes.STRING,
-    answer: DataTypes.STRING,
     round: DataTypes.STRING,
     show_no: DataTypes.STRING,
-    air_date: DataTypes.DATE
+    category: DataTypes.STRING,
+    is_daily_double: DataTypes.BOOLEAN,
+    is_music: DataTypes.BOOLEAN,
+    is_video: DataTypes.BOOLEAN,
+    value: DataTypes.INTEGER,
+    value_copy: DataTypes.INTEGER,
+    value_dd: DataTypes.INTEGER,
+    question: DataTypes.TEXT,
+    answer: DataTypes.TEXT,
+    air_date: DataTypes.DATE,
+    air_year: DataTypes.INTEGER,
+    air_month: DataTypes.INTEGER,
+    air_day: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'jeopardy_questions',

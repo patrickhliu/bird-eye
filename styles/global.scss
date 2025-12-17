@@ -1,8 +1,27 @@
+.pointer {
+    cursor: pointer;
+}
+
 .jeopardy {
+    .category {
+        padding:10px;
+        margin: 5px 0;
+        /* border:1px solid yellow; */
+        background-color: #060CE9;
+        color:#fff;
+    }
 
-        height:200px;
-        width:200px;
-        background-color: pink;
-
+    .question {
+        margin: 5px 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height:100px;
+        padding:15px;
+        border:1px solid #111;
+        background-color: #060CE9;
+        color:yellow;
+        font-size:18pt;
+    }
 }
 

@@ -81,7 +81,7 @@ export default function page() {
         </div>
         <div className="row mt-5">
             { currentRound == 1 &&
-                <Grid questions={ roundOne }></Grid>
+                <Grid questions={ roundOne } currentRound={ currentRound }></Grid>
             }
         </div>
         </>
