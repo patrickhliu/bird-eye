@@ -1,16 +1,36 @@
-import React, { useState, } from 'react';
+import React, { useState, useEffect, } from 'react';
 import { singleQuestion, QuestionList } from '../../lib/interfaces';
 import '../../styles/global.scss';
 
 const grid: React.FC<QuestionList> = (props) => {
-    console.log(props);
+    //console.log(props);
     const [gridNumbers, setGridNumbers] = useState<number[]>([]);
 
-    /* for(let i = 1; i++; i < 26) {
-        gridNumbers.push(i);
-    } */
+    useEffect(() => {
+        let randNumber = Math.floor(Math.random() * 25) + 1;
+        if(gridNumbers.length < 0) gridNumbers.push(randNumber);
+        console.log(gridNumbers);
 
-    console.log(gridNumbers);
+
+    }, []);
+
+    const pat = () => {
+        console.log('a');
+    }
+
+    setTimeout(async () => {
+        do {
+            let rand = Math.floor(Math.random() * 25) + 1;
+
+            if(!gridNumbers.includes(rand)) {
+                gridNumbers.push(rand);
+            }
+
+            console.log(gridNumbers);
+            await new Promise(r => setTimeout(r, 750));
+
+        } while (gridNumbers.length < 25)
+    }, 100);
 
     const showQuestion = (o:singleQuestion) => {
         //console.log(o);
