@@ -14,10 +14,10 @@ export default function page() {
     const [loading, setLoading] = useState(false);
     const [years, setYears] = useState([]);
     const [episodes, setEpisodes] = useState([]);
-    const [currentRound, setCurrentRound] = useState(0);
-    const [roundOne, setRoundOne] = useState(Array<singleQuestion>);
-    const [roundTwo, setRoundTwo] = useState(Array<singleQuestion>);
-    const [roundFinal, setRoundFinal] = useState(Array<singleQuestion>);
+    const [currentRound, setCurrentRound] = useState(1);
+    const [questions, setQuestions] = useState(Array<singleQuestion>);
+    const [gridArr, setGridArr] = useState<number[]>([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29]);
+    const [gridNumbers, setGridNumbers] = useState<number[]>([]);
 
     useEffect(() => {
         getYears();
@@ -61,11 +61,24 @@ export default function page() {
     }
 
     async function createBoardGrid(date:string) {
+        setGridArr([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29]);
+        setGridNumbers([]);
+        setQuestions([]);
+
         try {
             const response = await axios('/api/jeopardy/episode/' + date);
-            console.log(response.data);
-            setRoundOne(response.data.round_one);
-            setCurrentRound(1);
+            //console.log(response.data);
+            if(currentRound == 1) setQuestions(response.data.round_one);
+
+            do {
+                let rand = Math.floor(Math.random() * 30);
+                let num = gridArr.splice(rand, 1);
+                if(num.length == 0) continue;
+
+                //setGridNumbers(gridNumbers.concat(num));
+                setGridNumbers(gridNumbers => gridNumbers.concat(num));
+                await new Promise(r => setTimeout(r, 250));
+            } while (gridArr.length > 0)
         } catch (error) {
             console.error("Error fetching data:", error);
             //setHasMore(false);
@@ -74,6 +87,11 @@ export default function page() {
 
     return (
         <>
+        <div className="row my-2">
+            <p className="text-center">
+                { currentRound == 1 && <span>Jeopardy!</span> }
+            </p>
+        </div>
         <div className="grid grid-cols-15 gap-1">
             { years.map((y, i) => (
                 <Dropdown3 key={ i } label={ y } episodes={ episodes } sendToParent={ (x:string) => getEpisodesByYear(x) } sendShowNo={ (x:string) => createBoardGrid(x) }></Dropdown3>
@@ -81,7 +99,7 @@ export default function page() {
         </div>
         <div className="row mt-5">
             { currentRound == 1 &&
-                <Grid questions={ roundOne } currentRound={ currentRound }></Grid>
+                <Grid questions={ questions } currentRound={ currentRound } gridArr={ gridArr } gridNumbers={ gridNumbers }></Grid>
             }
         </div>
         </>

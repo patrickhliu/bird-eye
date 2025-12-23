@@ -10,4 +10,6 @@ export interface singleQuestion {
 export interface QuestionList {
   questions: Array<singleQuestion>;
   currentRound: number;
+  gridArr: any;
+  gridNumbers:any;
 }
