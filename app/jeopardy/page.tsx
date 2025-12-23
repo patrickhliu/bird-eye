@@ -1,11 +1,13 @@
 'use client';
 import React, { useCallback, useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import Dropdown from '../../components/custom/dropdown';
-import Dropdown3 from '../../components/custom/dropdown3';
-import Grid from '../../components/custom/grid';
+import Dropdown from '../../components/jeopardy/dropdown';
+import Dropdown3 from '../../components/jeopardy/dropdown3';
+import Grid from '../../components/jeopardy/grid';
+import QuestionModal from '../../components/jeopardy/questionModal';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { singleQuestion } from '../../lib/interfaces';
+declare var bootstrap: any;
 
 export default function page() {
     ///logger.info("123 kid...");
@@ -18,6 +20,9 @@ export default function page() {
     const [questions, setQuestions] = useState(Array<singleQuestion>);
     const [gridArr, setGridArr] = useState<number[]>([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29]);
     const [gridNumbers, setGridNumbers] = useState<number[]>([]);
+    const [showModal, setShowModal] = useState(false);
+    const [question, setQuestion] = useState(null);
+
 
     useEffect(() => {
         getYears();
@@ -26,7 +31,9 @@ export default function page() {
     useEffect(() => {
         //console.log(years);
         //console.log(episodes);
-    }, [years, episodes]);
+        console.log(showModal);
+        console.log(question);
+    }, [years, episodes, showModal, question]);
 
     async function getYears() {
         //console.log("execute search...", {query:query, currentPage:currentPage, filters:filters});
@@ -77,7 +84,7 @@ export default function page() {
 
                 //setGridNumbers(gridNumbers.concat(num));
                 setGridNumbers(gridNumbers => gridNumbers.concat(num));
-                await new Promise(r => setTimeout(r, 250));
+                await new Promise(r => setTimeout(r, 100));
             } while (gridArr.length > 0)
         } catch (error) {
             console.error("Error fetching data:", error);
@@ -85,23 +92,29 @@ export default function page() {
         }
     }
 
+    const showQuestion = (q:any) => {
+        setShowModal(true);
+        setQuestion(q);
+    }
+
     return (
         <>
-        <div className="row my-2">
-            <p className="text-center">
-                { currentRound == 1 && <span>Jeopardy!</span> }
-            </p>
-        </div>
-        <div className="grid grid-cols-15 gap-1">
-            { years.map((y, i) => (
-                <Dropdown3 key={ i } label={ y } episodes={ episodes } sendToParent={ (x:string) => getEpisodesByYear(x) } sendShowNo={ (x:string) => createBoardGrid(x) }></Dropdown3>
-            ))}
-        </div>
-        <div className="row mt-5">
-            { currentRound == 1 &&
-                <Grid questions={ questions } currentRound={ currentRound } gridArr={ gridArr } gridNumbers={ gridNumbers }></Grid>
-            }
-        </div>
+            <QuestionModal></QuestionModal>
+            <div className="row my-2">
+                <p className="text-center">
+                    { currentRound == 1 && <span>Jeopardy!</span> }
+                </p>
+            </div>
+            <div className="grid grid-cols-15 gap-1">
+                { years.map((y, i) => (
+                    <Dropdown3 key={ i } label={ y } episodes={ episodes } sendToParent={ (x:string) => getEpisodesByYear(x) } sendShowNo={ (x:string) => createBoardGrid(x) }></Dropdown3>
+                ))}
+            </div>
+            <div className="row mt-5">
+                { currentRound == 1 &&
+                    <Grid questions={ questions } currentRound={ currentRound } gridArr={ gridArr } gridNumbers={ gridNumbers } showQuestion={ (q:any) => showQuestion(q) }></Grid>
+                }
+            </div>
         </>
     )
 }

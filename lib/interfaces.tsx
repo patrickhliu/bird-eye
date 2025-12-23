@@ -11,5 +11,6 @@ export interface QuestionList {
   questions: Array<singleQuestion>;
   currentRound: number;
   gridArr: any;
-  gridNumbers:any;
+  gridNumbers: any;
+  showQuestion: any;
 }
