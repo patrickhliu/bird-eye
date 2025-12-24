@@ -21,7 +21,7 @@ export async function GET(request: Request, {
             round: 'Jeopardy!',
         },
         order: [
-            ['value', 'ASC']
+            ['category', 'ASC'], ['value', 'ASC']
         ],
     });
 
@@ -33,7 +33,7 @@ export async function GET(request: Request, {
             round: 'Double Jeopardy!',
         },
         order: [
-            ['value', 'ASC']
+            ['category', 'ASC'], ['value', 'ASC']
         ],
     });
 

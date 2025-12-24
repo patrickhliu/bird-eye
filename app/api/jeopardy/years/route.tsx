@@ -18,23 +18,6 @@ export async function GET(request: Request) {
 
     const years = _.map(dbResults, 'air_year');
 
-    /* //console.log(years);
-
-    for(let y of years) {
-        //console.log(y);
-
-        dbResults = await JeopardyQuestion.findAll({
-            where: {
-                air_year: y
-            },
-            order: [
-                ['air_date', 'ASC']
-            ],
-        });
-
-        //console.log(dbResults);
-    } */
-
     let output = {
         years: years
     };

@@ -4,29 +4,24 @@ import Modal from 'react-bootstrap/Modal';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 interface Args {
-   showModal: boolean,
+    isOpen: boolean,
+    question: any,
+    closeModal: any,
 }
 
-const questionModal = () => {
-    //console.log('pat', showModal);
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-
+const questionModal:React.FC<Args> = ({ isOpen, question, closeModal }) => {
     return (
     <>
-        <Button variant="primary" onClick={handleShow}>Launch demo modal</Button>
-
-        <Modal show={show} onHide={handleClose} keyboard={true}>
+        <Modal centered show={ isOpen } keyboard={ true } backdrop="static" animation={ true } style={{ visibility:"visible", }}>
             <Modal.Header>
-                <Modal.Title>Modal title</Modal.Title>
+                <Modal.Title>{ question.category } - ${ question.value }</Modal.Title>
             </Modal.Header>
 
-            <Modal.Body>Modal Content...</Modal.Body>
+            <Modal.Body>{ question.question }</Modal.Body>
 
             <Modal.Footer>
-                <Button>Close</Button>
-                <Button>Save changes</Button>
+                <Button onClick={ closeModal }>Close</Button>
+                {/* <Button>Save changes</Button> */}
             </Modal.Footer>
         </Modal>
     </>

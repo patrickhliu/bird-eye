@@ -1,27 +1,20 @@
 import React, { useState, useEffect, } from 'react';
 import { singleQuestion, QuestionList } from '../../lib/interfaces';
 import '../../styles/global.scss';
-import QuestionModal from './questionModal';
 
 const grid: React.FC<QuestionList> = (props) => {
-    //console.log(props);
-    //const [props.gridArr, setprops.gridArr] = useState<number[]>(props.props.gridArr);
-    //const [props.gridNumbers, setprops.gridNumbers] = useState<number[]>(props.props.gridNumbers);
+    const [colorGridNumbers, setColorGridNumbers] = useState<number[]>([]);
 
-    /* const props.showQuestion = (o:singleQuestion) => {
-        const myModalElement = document.getElementById('question-modal');
-        console.log(myModalElement);
-        var myModal = new bootstrap.Modal(myModalElement);
-        myModal.show();
-        console.log(o);
-    } */
+    const handleClick = (index:number) => {
+        setColorGridNumbers(colorGridNumbers.concat([index]));
+    }
 
   return (
-    <div className="container jeopardy col-md-10 offset-md-1">
+    <div className={ props.currentRound != 3 ? "container jeopardy col-md-10 offset-md-1" : "container jeopardy col-md-2 offset-md-5" }>
         <div className="row g-2">
             {
                 props.questions.map((o:singleQuestion, index:number) => {
-                    if(index > 5) return;
+                    if(index % 5 != 0) return;
 
                     return (
                         <div className="col" key={ index }>
@@ -34,11 +27,21 @@ const grid: React.FC<QuestionList> = (props) => {
         <div className="row g-2 line1">
             {
                 props.questions.map((o:singleQuestion, index:number) => {
-                    if(props.currentRound == 1 && o.value == 100) {
+                    if((props.currentRound == 1 && o.round == "Jeopardy!" && o.value == 100) || (props.currentRound == 2 && o.round == "Double Jeopardy!" && o.value == 200)) {
                         return (
                             <div className="col" key={ index }>
-                                <div className="text-center question pointer" onClick={ () => { props.showQuestion(o); }}>
-                                    { props.gridNumbers.indexOf(index) !== -1 && <b>${ o.value }</b>}
+                                <div className="text-center question pointer" onClick={ () => { props.showQuestion(o); handleClick(index); }}>
+                                    { props.gridNumbers.indexOf(index) !== -1 && colorGridNumbers.indexOf(index) === -1 && <b>${ o.value }</b>}
+                                    { props.gridNumbers.indexOf(index) !== -1 && colorGridNumbers.indexOf(index) !== -1 && <b style={{ color:"grey" }}>${ o.value }</b>}
+                                </div>
+                            </div>
+                        );
+                    } else if (props.currentRound == 3 && o.round == "Final Jeopardy!") {
+                        return (
+                            <div className="col" key={ index }>
+                                <div className="text-center question pointer" onClick={ () => { props.showQuestion(o); handleClick(index); }}>
+                                    { colorGridNumbers.indexOf(index) === -1 && <b>${ o.value }</b>}
+                                    { colorGridNumbers.indexOf(index) !== -1 && <b style={{ color:"grey" }}>${ o.value }</b>}
                                 </div>
                             </div>
                         );
@@ -49,11 +52,12 @@ const grid: React.FC<QuestionList> = (props) => {
         <div className="row g-2 line2">
             {
                 props.questions.map((o:singleQuestion, index:number) => {
-                    if(props.currentRound == 1 && o.value == 200) {
+                    if((props.currentRound == 1 && o.round == "Jeopardy!" && o.value == 200) || (props.currentRound == 2 && o.round == "Double Jeopardy!" && o.value == 400)) {
                         return (
                             <div className="col" key={ index }>
-                                <div className="text-center question pointer" onClick={ () => { props.showQuestion(o); }}>
-                                    { props.gridNumbers.indexOf(index) !== -1 && <b>${ o.value }</b>}
+                                <div className="text-center question pointer" onClick={ () => { props.showQuestion(o); handleClick(index); }}>
+                                    { props.gridNumbers.indexOf(index) !== -1 && colorGridNumbers.indexOf(index) === -1 && <b>${ o.value }</b>}
+                                    { props.gridNumbers.indexOf(index) !== -1 && colorGridNumbers.indexOf(index) !== -1 && <b style={{ color:"grey" }}>${ o.value }</b>}
                                 </div>
                             </div>
                         );
@@ -64,11 +68,12 @@ const grid: React.FC<QuestionList> = (props) => {
         <div className="row g-2 line3">
             {
                 props.questions.map((o:singleQuestion, index:number) => {
-                    if(props.currentRound == 1 && o.value == 300) {
+                    if((props.currentRound == 1 && o.round == "Jeopardy!" && o.value == 300) || (props.currentRound == 2 && o.round == "Double Jeopardy!" && o.value == 600)) {
                         return (
                             <div className="col" key={ index }>
-                                <div className="text-center question pointer" onClick={ () => { props.showQuestion(o); }}>
-                                    { props.gridNumbers.indexOf(index) !== -1 && <b>${ o.value }</b>}
+                                <div className="text-center question pointer" onClick={ () => { props.showQuestion(o); handleClick(index); }}>
+                                    { props.gridNumbers.indexOf(index) !== -1 && colorGridNumbers.indexOf(index) === -1 && <b>${ o.value }</b>}
+                                    { props.gridNumbers.indexOf(index) !== -1 && colorGridNumbers.indexOf(index) !== -1 && <b style={{ color:"grey" }}>${ o.value }</b>}
                                 </div>
                             </div>
                         );
@@ -79,11 +84,12 @@ const grid: React.FC<QuestionList> = (props) => {
         <div className="row g-2 line4">
             {
                 props.questions.map((o:singleQuestion, index:number) => {
-                    if(props.currentRound == 1 && o.value == 400) {
+                    if((props.currentRound == 1 && o.round == "Jeopardy!" && o.value == 400) || (props.currentRound == 2 && o.round == "Double Jeopardy!" && o.value == 800)) {
                         return (
                             <div className="col" key={ index }>
-                                <div className="text-center question pointer" onClick={ () => { props.showQuestion(o); }}>
-                                    { props.gridNumbers.indexOf(index) !== -1 && <b>${ o.value }</b>}
+                                <div className="text-center question pointer" onClick={ () => { props.showQuestion(o); handleClick(index); }}>
+                                    { props.gridNumbers.indexOf(index) !== -1 && colorGridNumbers.indexOf(index) === -1 && <b>${ o.value }</b>}
+                                    { props.gridNumbers.indexOf(index) !== -1 && colorGridNumbers.indexOf(index) !== -1 && <b style={{ color:"grey" }}>${ o.value }</b>}
                                 </div>
                             </div>
                         );
@@ -94,11 +100,12 @@ const grid: React.FC<QuestionList> = (props) => {
         <div className="row g-2 line5">
             {
                 props.questions.map((o:singleQuestion, index:number) => {
-                    if(props.currentRound == 1 && o.value == 500) {
+                    if((props.currentRound == 1 && o.round == "Jeopardy!" && o.value == 500) || (props.currentRound == 2 && o.round == "Double Jeopardy!" && o.value == 1000)) {
                         return (
                             <div className="col" key={ index }>
-                                <div className="text-center question pointer" onClick={ () => { props.showQuestion(o); }}>
-                                    { props.gridNumbers.indexOf(index) !== -1 && <b>${ o.value }</b>}
+                                <div className="text-center question pointer" onClick={ () => { props.showQuestion(o); handleClick(index); }}>
+                                    { props.gridNumbers.indexOf(index) !== -1 && colorGridNumbers.indexOf(index) === -1 && <b>${ o.value }</b>}
+                                    { props.gridNumbers.indexOf(index) !== -1 && colorGridNumbers.indexOf(index) !== -1 && <b style={{ color:"grey" }}>${ o.value }</b>}
                                 </div>
                             </div>
                         );
