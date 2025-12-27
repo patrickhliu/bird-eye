@@ -24,7 +24,7 @@ const grid: React.FC<QuestionList> = (props) => {
                 })
             }
         </div>
-        <div className="row g-2 line1">
+        <div className="row g-2">
             {
                 props.questions.map((o:singleQuestion, index:number) => {
                     if((props.currentRound == 1 && o.round == "Jeopardy!" && o.value == 100) || (props.currentRound == 2 && o.round == "Double Jeopardy!" && o.value == 200)) {
@@ -49,7 +49,7 @@ const grid: React.FC<QuestionList> = (props) => {
                 })
             }
         </div>
-        <div className="row g-2 line2">
+        { (props.currentRound == 1 || props.currentRound == 2) && <div className="row g-2">
             {
                 props.questions.map((o:singleQuestion, index:number) => {
                     if((props.currentRound == 1 && o.round == "Jeopardy!" && o.value == 200) || (props.currentRound == 2 && o.round == "Double Jeopardy!" && o.value == 400)) {
@@ -64,8 +64,8 @@ const grid: React.FC<QuestionList> = (props) => {
                     }
                 })
             }
-        </div>
-        <div className="row g-2 line3">
+        </div> }
+        { (props.currentRound == 1 || props.currentRound == 2) && <div className="row g-2">
             {
                 props.questions.map((o:singleQuestion, index:number) => {
                     if((props.currentRound == 1 && o.round == "Jeopardy!" && o.value == 300) || (props.currentRound == 2 && o.round == "Double Jeopardy!" && o.value == 600)) {
@@ -80,8 +80,8 @@ const grid: React.FC<QuestionList> = (props) => {
                     }
                 })
             }
-        </div>
-        <div className="row g-2 line4">
+        </div> }
+        { (props.currentRound == 1 || props.currentRound == 2) && <div className="row g-2">
             {
                 props.questions.map((o:singleQuestion, index:number) => {
                     if((props.currentRound == 1 && o.round == "Jeopardy!" && o.value == 400) || (props.currentRound == 2 && o.round == "Double Jeopardy!" && o.value == 800)) {
@@ -96,8 +96,8 @@ const grid: React.FC<QuestionList> = (props) => {
                     }
                 })
             }
-        </div>
-        <div className="row g-2 line5">
+        </div> }
+        { (props.currentRound == 1 || props.currentRound == 2) && <div className="row g-2">
             {
                 props.questions.map((o:singleQuestion, index:number) => {
                     if((props.currentRound == 1 && o.round == "Jeopardy!" && o.value == 500) || (props.currentRound == 2 && o.round == "Double Jeopardy!" && o.value == 1000)) {
@@ -112,7 +112,7 @@ const grid: React.FC<QuestionList> = (props) => {
                     }
                 })
             }
-        </div>
+        </div> }
     </div>
   )
 }
