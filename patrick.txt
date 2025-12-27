@@ -1,0 +1,7 @@
+https://pnpm.io/docker
+https://dev.to/thecodexakash/complete-guide-on-nextjs-deployment-on-aws-elastic-beanstalk-using-docker-aws-codepipeline-codebuild-8g9
+
+- Go to root and execute "npm run dev", this will start localhost:3000 server
+- "pnpm run build", creates the root .next prod build folder
+- docker build -t jeopardy-app .
+- docker run -p :3000 jeopardy-app
